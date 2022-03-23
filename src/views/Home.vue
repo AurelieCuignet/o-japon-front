@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <HeaderLayout/>
+    <ConnectionLayout/>
     <FooterLayout/>
     <img alt="Vue logo" src="../assets/logo.png">
 
@@ -12,13 +13,17 @@
 // @ is an alias to /src
 
 import HeaderLayout from '@/components/Headerlayout.vue'
+import ConnectionLayout from '@/components/ConnectionLayout.vue'
 import FooterLayout from '@/components/FooterLayoutMobile.vue'
 
 export default {
   name: 'Home',
   components: { 
     FooterLayout,
+    ConnectionLayout,
     HeaderLayout
+
+
 
   }
 }

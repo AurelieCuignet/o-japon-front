@@ -1,0 +1,604 @@
+@font-face {
+    font-family: "Presque Light";
+    src: url("../fonts/Presque-Light.otf");
+  }
+
+@font-face {
+    font-family: "Presque Regular";
+    src: url("../fonts/Presque-Regular.otf");
+  }
+
+@font-face {
+    font-family: "Presque";
+    src: url("../fonts/Presque.otf");
+  }
+
+
+body,html{
+    margin:0;
+    padding: 0;
+    height: 100%
+}
+
+.black_color{
+    background-color: var(--secondary-color);
+}
+
+/* Section header */
+
+.header__desktop{
+    width: 100%;
+    background-image: linear-gradient(rgba(7, 7, 7, 0.247), rgba(7, 7, 7, 0.247)), url('../../assets/images/header_background.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+.header__desktop-title{
+    text-align: center;
+    margin-top: 8em;
+    margin-bottom: 2.4em;
+}
+
+.header__desktop-title span{
+    color:#fff;
+    font-family: 'Presque Regular';
+    font-size: 8em;
+}
+
+.header__desktop-title h1{
+    color:#fff;
+    font-family: 'Presque Light';
+    font-size: 20em;
+    letter-spacing: 0.2em;
+    margin:0;
+}
+
+.header__desktop__action{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16em;
+}
+
+.header__desktop__action__container-search{
+    width: 50%;
+    margin-right: 2.4em;
+}
+
+.header__desktop-pi{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* Section sur le Japon */
+
+.main_container{
+    position:relative;
+}
+
+.lejapon_word{
+    position: absolute;
+    color:var(--secondary-color);
+    font-size: 10em;
+    top:-80px;
+    left:-80px;
+    font-family: 'Fellix SemiBold';
+    text-shadow: var(--primary-color) 1px 1px, var(--primary-color) -1px 1px, var(--primary-color) -1px -1px, var(--primary-color) 1px -1px;
+    /* z-index: 80; */
+}
+
+.lejapon{
+    position: relative;
+    margin-top:20em;
+    margin-bottom:20em;
+    display: flex;
+}
+
+.lejapon__content-left{
+    position: relative;
+    width: 40%;
+    padding-bottom: 30%;
+}
+
+.lejapon__content-left img{
+    position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	/* height: 100%; */
+	object-fit: cover;
+    z-index:2;
+}
+
+.lejapon__content-right{
+    width: 80%;
+}
+
+.lejapon__content__right-text{
+    margin-left: 8em;
+}
+
+.lejapon__content__right-text h2{
+    color:#fff;
+    font-size: 3.8em;
+    font-family: 'Fellix SemiBold';
+    margin:0;
+}
+
+.lejapon__content__right-text p{
+    color:#fff;
+    font-size: 1.8em;
+    font-family: 'Fellix Regular';
+    line-height: 1.4;
+    margin-bottom: 4em;
+}
+
+.lejapon__content-right button {
+    margin-bottom: 4em;
+}
+
+.lejapon__content__right-img{
+    position: relative;
+    width: 100%;
+    padding-bottom: 40%;
+}
+
+.lejapon__content__right-img img{
+    position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+    z-index:2;
+    margin-left: 1.6em;
+}
+
+
+/* Section Parcourez nos lieux insolites */
+
+.pi{
+    margin-top: 20em;
+    margin-bottom: 20em;
+}
+
+.pi__content{
+    display:flex;
+    align-items: center;
+}
+
+.pi__content-title h2{
+    font-size: 3.8em;
+    font-family: 'Fellix SemiBold';
+    color:#fff;
+}
+
+.pi__content-title{
+    margin-right: 4em;
+}
+
+.pi p {
+    color:#fff;
+    font-family: 'Fellix Regular';
+    font-size: 1.8em;
+    line-height: 1.4;
+    width: 50%;
+}
+
+.pi__list__top, .pi__list__bottom{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 8em;
+    margin-bottom:8em;
+}
+
+
+.pi__list__top span, .pi__list__bottom-center span{
+    color: #fff;
+    font-size: 16em;
+    font-family: 'Presque';
+    text-align: center;
+}
+
+.pi__list__top-center,
+.pi__list__bottom-right,
+.pi__list__bottom-left{
+    width: 250px;
+    height: 4px;
+    background: var(--primary-color);
+    margin-left: 5em;
+    margin-right: 5em;
+}
+
+
+
+/* Section Personnaliser votre experience */
+
+.personnaliser{
+    margin-top: 20em;
+    margin-bottom: 20em;
+    background-image: url('../images/background_personnaliser.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* A revoir */
+    padding-top: 25em;
+    padding-bottom: 25em;
+
+}
+
+.personnaliser-background{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.personnaliser__experience{
+    margin: 0 auto;
+    background-image: url('../images/background_personnaliser.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 20em;
+    padding-bottom: 20em;
+}
+
+.personnaliser__experience-title{
+    font-family: 'Fellix SemiBold';
+    color: #fff;
+    font-size: 3.8em;
+    text-align: center;
+}
+
+.personnaliser__experience p {
+    font-family: 'Fellix Regular';
+    font-size: 1.8em;
+    color:#fff;
+    text-align: center;
+}
+
+.personnaliser__experience-action{
+    text-align: center;
+}
+
+.personnaliser__experience-action a {
+    font-family: 'Fellix Bold';
+    font-size: 1.8em;
+    color:#fff;
+    text-decoration: none;
+    margin-right: 1.6em;
+}
+
+.personnaliser__experience-action a:hover{
+    color:var(--primary-color);
+    transition: 0.5s;
+}
+
+
+/* Section Galerie */
+
+.galerie {
+    margin-top: 20em;
+    margin-bottom: 20em;
+    position: relative;
+}
+
+.galerie-word-1{
+    position: absolute;
+    color:var(--secondary-color);
+    font-size: 10em;
+    right: 0;
+    top: 0;
+    font-family: 'Fellix SemiBold';
+    text-shadow: var(--primary-color) 1px 1px, var(--primary-color) -1px 1px, var(--primary-color) -1px -1px, var(--primary-color) 1px -1px;
+}
+
+.galerie-word-2{
+    position: absolute;
+    color:var(--secondary-color);
+    font-size: 10em;
+    bottom: 10%;
+    font-family: 'Fellix SemiBold';
+    text-shadow: var(--primary-color) 1px 1px, var(--primary-color) -1px 1px, var(--primary-color) -1px -1px, var(--primary-color) 1px -1px;
+}
+
+.galerie-text h2{
+    font-size: 3.8em;
+    color:#fff;
+    font-family: 'Fellix SemiBold';
+    margin: 0;
+}
+
+.galerie-text p{
+    font-size: 1.8em;
+    color:#fff;
+    font-family: 'Fellix Regular';
+}
+
+.galerie__img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+.galerie__img-1,
+.galerie__img-2,
+.galerie__img-3,
+.galerie__img-4{
+    margin-right: 1.6em;
+}
+
+.galerie__img-1 img,
+.galerie__img-2 img,
+.galerie__img-3 img,
+.galerie__img-4 img{
+    margin-bottom: 1.6em;
+}
+
+
+/* Section contact */
+
+.contact{
+    position: relative;
+    margin-top:20em;
+    margin-bottom:20em;
+    display: flex;
+}
+
+.contact__content-left{
+    position: relative;
+    width: 50%;
+}
+
+.contact__content-left img{
+    position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%; 
+	object-fit: cover;
+    z-index:2;
+}
+
+.contact__content__right{
+    width: 50%;
+    padding: 8em;
+    background-color: #fff;
+}
+
+.contact__content__right h2{
+    font-size: 3.8em;
+    color: var(--secondary-color);
+    font-family: 'Fellix SemiBold';
+    margin-bottom: 2.4em;
+}
+
+.contact__content__right textarea{
+    background-color: #f1f1f1;
+    border: none;
+    margin-top: 1.6em;
+}
+
+.contact__content__right label{
+    font-size: 2.4em;
+    font-family: 'Fellix SemiBold';
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+.contact__content__right input {
+    margin-bottom: 2.4em;
+    margin-top: 1.6em;
+}
+
+
+
+.contact__content__right button{
+    margin-top: 2.4em;
+}
+
+/* Section FOOTER */
+
+.footer{
+    margin-top: 20em;
+    padding-bottom: 10em;
+}
+
+.footer-separator{
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    margin-top: 3.2em;
+    margin-bottom: 3.2em;
+}
+
+.footer-bottom{
+    text-align: center;
+}
+
+.footer-bottom span {
+    color:#fff;
+    font-size: 1.6em;
+    margin-right: 2.4em;
+}
+
+
+/* PARTIE RESPONSIVE 375PX */
+
+@media screen and (max-width: 375px){
+
+    /* Section HEADER */
+    .header{
+        display: none;
+    }
+
+    .header__desktop{
+        display: grid;
+    }
+
+    .header__desktop-title{
+        margin-top:1.6em;
+    }
+
+    .header__desktop-title span{
+        font-size: 4.2em;
+    }
+
+    .header__desktop-title h1{
+        font-size: 7.2em;
+    }
+
+    .header__desktop__action{
+        display: block;
+        margin: 0 auto;
+        width: 302px;
+    }
+    .header__desktop__action__container-search{
+        width: 100%;
+        margin-bottom: 1.6em;
+    }
+
+    .header__desktop__action__container-btn{
+        text-align: center;
+    }
+    
+    /* SECTION LE JAPON */
+
+    .lejapon{
+        margin-top: 10em;
+        margin-bottom: 10em;
+        display: block;
+    }
+
+    .lejapon__content-left{
+        width: 100%;
+        padding-bottom: 100%;
+    }
+    .lejapon__content-left img{
+        height: 100%;
+    }
+
+    .lejapon__text-mobile{
+        display: none;
+    }
+    .lejapon__content-right{
+        width: 100%;
+    }
+
+    .lejapon__content__right-text{
+        margin-left:0;
+        margin-top: 2.4em;
+    }
+
+    .lejapon__content__right-text p{
+        width: 100%;
+        margin-bottom: 0;
+    }
+    .lejapon__content__right-img{
+        display: none;
+    }
+
+    .lejapon_word{
+        display: none;
+    }
+
+    /* SECTION PARCOUREZ NOS LIEUX INSOLITES */
+
+    .lejapon, .pi, .personnaliser__experience, .contact{
+        margin-top:8em;
+        margin-bottom: 8em;
+        padding:0;
+    }
+    .pi__content{
+        display: block;
+    }
+
+    .pi p {
+        width: 100%;
+    }
+    
+    .pi span {
+        font-size: 7.2em;
+        text-align: center;
+        display: block;
+        margin-bottom: 0.4em;
+    }
+    .pi__list__bottom-left{
+        display: none;
+    }
+
+    .pi__list__top-center, .pi__list__bottom-right{
+        margin-bottom: 24px
+    }
+
+    .pi__list__top, .pi__list__bottom{
+        margin-top: 2.4em;
+        margin-bottom: 0;
+    }
+
+    .personnaliser__experience-action{
+        margin-top: 2.4em;
+    }
+
+    .personnaliser__experience-action a {
+        text-align: center;
+        margin-right:0;
+    }
+
+    .personnaliser__experience-action button {
+        margin-top: 1.6em;
+    }
+
+
+    /* GALERIE */
+
+    .galerie-word{
+        display: none;
+    }
+    .galerie__img {
+        display: block;
+    }
+    .galerie__img-1, .galerie__img-2{
+        margin-right: 0;
+    }
+    .galerie__img-2 img, .galerie__img-1 img {
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
+    .galerie__img-3{
+        display: none;
+    }
+
+/* SECTION CONTACT */ 
+
+    .contact {
+        display: block;
+    }
+
+    .contact__content-left{
+        display: none;
+    }
+
+    .contact__content__right{
+        width: auto;
+        padding: 0.8em;
+        background-color: var(--secondary-color);
+    }
+    .contact__content__right h2 {
+        color:#fff;
+    }
+
+    .contact__content__right label {
+        color:#fff;
+    }
+
+}

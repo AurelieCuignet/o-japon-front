@@ -1,0 +1,54 @@
+.listguide{
+    width: 100%;
+    background-color: #fff;
+    padding-top:8em;
+    padding-bottom: 8em;
+}
+
+
+.listguide__card__container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listguide__menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4em;
+}
+
+.listguide__menu-left h2{
+    font-family: 'Fellix Bold';
+    color: var(--secondary-color);
+    font-size: 5.4em;
+}
+
+
+.listguide__menu-left span{
+    color: var(--primary-color);
+}
+
+.listguide__menu-right a{
+    color: #fff;
+}
+
+@media screen  and (max-width: 375px) {
+
+    .listguide {
+        height: 100vh;
+    }
+
+    .listguide__menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+
+    }
+    
+    .listguide__menu-left h2{
+        font-size: 3.4em;
+    }
+}
+

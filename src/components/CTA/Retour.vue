@@ -1,29 +1,42 @@
 <template>
 
-<div class="btn-retour">
-    <img alt="arrow left" src="@/assets/arrow-left.svg">
-    <span>Retour</span>
-</div>
+    <a href="#" class="return">
+        <div class="return__content">
+            <img class="return__content-left" alt="arrow left" src="@/assets/arrow-left.svg">
+            <span class="return__content-right">{{ textBtn }}</span>
+        </div>
+    </a>
 
 </template>
 
 <script>
 export default {
     name: 'Retour',
+    props: {
+        textBtn: String
+    }
 
 
 }
 </script>
 
 <style scoped>
+@import url('../../assets/css/style.css');
 
-    .btn-retour {
+    .return{
+        text-decoration: none;
+    }
+
+    .return__content {
         display: flex;
         align-items: center;
-        font-size: 18px;
-        font-weight: bold;
-        color: #1D1D1D;
+    }
 
+    .return__content-right {
+        font-size: 1.8em;
+        font-family: 'Fellix SemiBold';
+        margin-left: 0.8em; 
+        color: var(--secondary-color)
     }
 
     img {

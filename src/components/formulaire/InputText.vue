@@ -1,48 +1,60 @@
 <template>
-  <div class="container_inputText">
-      <input type="text" name="inputText" id="inputText" placeholder="Votre texte" class="inputText">
-  </div>
+      <input :type="type" :name="name" :id="id" v-on:blur="handleChange" v-on:change="handleChange" :placeholder="placeholder" class="container__inputText-content">
 </template>
 
 <script>
 export default {
-
+    name: 'InputText',
+    props: {
+        type: String,
+        name: String,
+        id: String,
+        placeholder: String
+    },
+    data () {
+        return {
+            localInputValue: ''
+        }
+    },
+    methods: {
+        handleChange: function (event) {
+        this.$emit('inputChange', {
+            name: this.name,
+            value: event.target.value
+        })
+        }
+    }
 }
 </script>
 
 <style>
+@import url('../../assets/css/style.css');
 
-.container_inputText{
-    max-width: 748px;
-}
 
-.inputText{
-    padding-left: 24px;
-    padding-top: 32px;
-    padding-bottom: 32px; 
-    border-radius: 10px;
-    border: 1px solid #F1F1F1;
+.container__inputText-content{
+    padding-left: 2.4em;
+    padding-top: 1.6em;
+    padding-bottom: 1.6em; 
+    border-radius: 5px;
+    border:none;
     background-color:#F1F1F1 ;
-    color: #1d1d1d;
-    font-size: 16px;
+    color: var(--secondary-color);
+    font-size: 1.5em;
+    font-family: 'Fellix Medium';
     font-weight: 500;
     width: 100%;
     box-sizing: border-box; 
 }
 
-.inputText::placeholder{
-    color:#ADADAD;
+.container__inputText-content::placeholder{
+    color:var(--regular-black);
     font-weight: 500;
 }
 
  @media screen and (max-width: 375px){
-    .container_inputText{
-        width: 302px;
-        margin: 0 auto;
-    }
 
-    .inputText{
-        padding: 16px;
+    .container__inputText-content{
+        padding: 1.6em;
     }
 } 
 

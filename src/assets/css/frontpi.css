@@ -1,0 +1,46 @@
+.poi{
+    width: 100%;
+    margin-top: 8em;
+}
+
+.poi h2{
+    font-size: 5.4em;
+    color: #fff;
+    text-align: left;
+    font-family: 'Fellix Bold';
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1.6em;
+}
+
+.poi__card__container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.resultats {
+    font-size: 1.6em;
+    color: #fff;
+    font-family: 'Fellix Bold';
+}
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;  
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 375px){
+
+    .poi__card__container{
+        display: block;
+    }
+
+    .card{
+        width: 100%;
+        margin-top: 2.4em;
+        margin-right: 2.4em;
+    }
+}

@@ -1,0 +1,52 @@
+.poi__back-background{
+    width: 100%;
+    background-color: #fff;
+    padding-top: 8em;
+    padding-bottom: 8em;
+}
+.poi__back{
+    width: 100%;
+    margin-top: 8em;
+}
+
+.poi__back h2{
+    font-size: 5.4em;
+    color: var(--secondary-color);
+    text-align: left;
+    font-family: 'Fellix Bold';
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1.6em;
+}
+
+.poi__back__card__container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.resultats {
+    font-size: 1.6em;
+    color: var(--secondary-color);
+    font-family: 'Fellix Bold';
+}
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;  
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 375px){
+
+    .poi__back__card__container{
+        display: block;
+    }
+
+    .card{
+        width: 100%;
+        margin-top: 2.4em;
+        margin-right: 2.4em;
+    }
+}

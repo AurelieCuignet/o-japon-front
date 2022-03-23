@@ -1,7 +1,7 @@
 <template>
-  <div class="container_searchbar">
-      <input type="text" name="searchbar" id="searchbar" placeholder="Ou voulez-vous aller" class="searchbar">
-  </div>
+
+      <input type="text" name="searchbar" id="searchbar" placeholder="Ou voulez-vous aller" class="container__inputSearch-content">
+
 </template>
 
 <script>
@@ -11,34 +11,25 @@ export default {
 </script>
 
 <style>
+@import url('../../assets/css/style.css');
 
-.searchbar{
-    max-width: 600px;
-}
-
-.searchbar input{
-    padding: 16px;
+.container__inputSearch-content{
+    padding: 0.8em;
     border-radius: 10px;
-    border: 1px solid #F1F1F1;
+    border:none;
     background-color:#F1F1F1 ;
-    color: #1d1d1d;
-    font-size: 16px;
+    color: var(--secondary-color);
+    font-size: 1.6em;
     font-weight: 500;
     width: 100%;
     box-sizing: border-box; 
+    font-family: 'Fellix Medium';
 }
 
 .searchbar input::placeholder{
-    color:#ADADAD;
+    color:var(--regular-black);
     font-weight: 500;
 }
-
- @media screen and (max-width: 375px){
-    .searchbar{
-        width: 302px;
-        margin: 0 auto;
-    }
-} 
 
 
 </style>

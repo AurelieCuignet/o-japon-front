@@ -1,23 +1,42 @@
 <template>
-  <div>
-      <header>
-          <div class="container">
-              <img src="../assets/logo.png" alt="logo">
-              <nav class="desktop">
-                  <router-link v-for="link in links" :key="link.name" :to="link.route">{{ link.name }}</router-link>  
-              </nav>
-              <ul class="login">
-                  <li class="inscription">Inscription</li>
-                  <li class="connect">Se Connecter</li>
-              </ul>
-          </div>
-      </header>
-  </div>
+
+<div class="main_container">
+      <nav class="header">
+      <div class="header-left"><router-link :to="'/'"><img src="../assets/logo.png" alt="logo"></router-link></div>
+      <div class="header__center">
+          <ul>
+              <li class="header__center-item"><router-link v-for="link in links" :key="link.name" :to="link.route">{{ link.name }}</router-link></li>
+              <!-- <li class="header__center-item"><router-link v-for="link in links" :key="link.name" :to="{ path: link.route, hash: link.hash }">{{ link.name }}</router-link></li> -->
+
+          </ul>
+      </div>
+      <div class="header__right">
+          <ul>
+              <li class="header__right-inscription">
+                  <router-link to="/register">
+                      Inscription
+                  </router-link>
+                  </li>
+              <li>
+                  <router-link to="/login">
+                        <Button btnName="Se connecter"/>
+                  </router-link>
+            </li>
+          </ul>
+      </div>
+  </nav>
+</div>
+
+  
 </template>
 
 <script>
+import Button from '@/components/Button.vue'
 export default {
     name:'HeaderLayout',
+    components: {
+        Button
+    },
     data () {
             return {
                 links: [
@@ -27,70 +46,91 @@ export default {
                     },
                     {
                         name: 'Le Japon',
-                        route: '/le_japon'
+                        route: '/home#japon',
+                        hash: '#japon'
                     },
                     {
-                        name: 'Points d\'intérêts',
-                        route: '/pointsinterets'
+                        name: 'Points d\'intérêt',
+                        route: '/pointsinteret'
                     },
-                    {
-                        name: 'Blogs Voyageurs',
+                   /*  {
+                        name: 'Blogs des Voyageurs',
                         route: '/blogs'
-                    },
+                    }, */
                     {
                         name: 'FAQ',
                         route: '/faq'
                     },
+                      {
+                        name: 'Team',
+                        route: '/team'
+                    },
                     {
                         name: 'Contact',
-                        route: '/contact'
+                        route: '/',
+                        hash: '#contact'
                     }
-                    
                 ]
             }
         }
-
+     
 }
 </script>
 
 <style scoped>
+@import url('../assets/css/style.css');
 
-.container {
+.header{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.header__center{
+    width: 100%;
     display: flex;
-    margin-left: 5em;
+    align-items: center;
+    justify-content: center;
 }
 
-a {
-    margin: 1em;
-    color: white;
+.header__center ul{
+    list-style: none;
 }
 
-ul {
-    display: inline-flex;
-    margin-left: 10em;
-    list-style-type: none;
-
-}
-li {
-    color: white;
-}
-.inscription {
-        margin: 18px;
+.header__center-item a{
+    font-size: 1.6em;
+    font-family: 'Fellix SemiBold';
+    color: #fff;
+    text-decoration: none;
+    margin-left: 2.4em;
 }
 
-.connect {
-    background-color: #ce1137;
-    border-radius: 10px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    padding-left: 24px;
-    padding-right: 24px;
-    margin-top: 3px;
-    height: 1rem;
-    
+.header__right ul{
+    display:flex;
+    align-items: center;
+    white-space: nowrap;
+    list-style: none;
 }
-nav {
-    margin-left: 15em;
+
+.header__right-inscription a{
+    text-decoration: none;
+    color:#fff;
+    font-size: 1.6em;
+    font-family: 'Fellix Bold';
+    margin-right: 3.2em;
+}
+
+.header__right-inscription a:hover{
+    color:var(--primary-color);
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 375px){
+    .header{
+        display: none;
+    }
 }
 
 </style>

@@ -1,0 +1,52 @@
+.backoffice{
+    background-color: #fff;
+    padding-top: 4em;
+    padding-bottom: 4em;
+    margin: 0;
+}
+
+.backoffice-title h2{
+    color: var(--secondary-color);
+    font-size: 5.4em;
+    font-family: 'Fellix Bold';
+    margin-top: 0;
+    padding:0;
+}
+
+.backoffice-title span {
+    color: var(--primary-color);
+}
+
+.backoffice-title h3{
+    font-size: 3.8em;
+    font-family: 'Fellix SemiBold';
+    margin-bottom: 1.6em;
+    color: var(--secondary-color);
+}
+
+.backoffice__card{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 1.6em;
+}
+
+.backoffice__card-content{
+    width: 48%;
+}
+
+@media screen and (max-width: 375px){
+
+    .backoffice__card {
+        margin-bottom: 9em;
+    }
+    .backoffice__card-content{
+        width: 100%;
+        
+    }
+    .card__back__content{
+        padding: 2.4em
+    }
+    .card__back__content-left{
+        margin-right: 0.8em;
+    }
+}
