@@ -63,10 +63,20 @@ export default {
     font-family: 'Fellix SemiBold';
 }
 
+/* PARTIE RESPONSIVE */
+
+@media screen and (max-width: 1366px){
+    .card__pi__img{
+        width: 120px;
+        height: 120px;
+    }
+}
+
 @media screen and (max-width: 375px){
     .card__pi{
         display: none;
     }
 }
+
 
 </style>
