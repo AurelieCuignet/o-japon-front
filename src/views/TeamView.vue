@@ -9,12 +9,12 @@
         <h1 class="titre_team">L'équipe du projet :</h1>
 
         <div class="team_container">
-            <CirclePi RoleMember="Lead Dev Back/Git Master Back" TeamMember="Aurélie" JapaneseName=" オーレリー"/>
+            <CirclePi RoleMember="Lead Dev Back/Git Master Back" TeamMember="Aurélie" JapaneseName=" オーレリー" ImgUrl="https://kyborash.com/images/Novembre-2020.jpg"/>
             <CirclePi RoleMember="Product Owner/Dev Fullstack" TeamMember="Xavier" JapaneseName=" ザビエル"/>
             <CirclePi RoleMember="Scrum Master/Dev Fullstack" TeamMember="Bastien" JapaneseName=" バスティエン"/>
         </div>
         <div class="team_container">
-            <CirclePi RoleMember="Lead Dev Front" TeamMember="Valentin" JapaneseName=" バレンタイン"/>
+            <CirclePi RoleMember="Lead Dev Front" TeamMember="Valentin" JapaneseName=" バレンタイン" ImgUrl="https://kyborash.com/images/valentin.jpg"/>
             <CirclePi RoleMember="Dev Front/Git Master Front" TeamMember="Maxime" JapaneseName=" マキシム"/>
         </div>
 

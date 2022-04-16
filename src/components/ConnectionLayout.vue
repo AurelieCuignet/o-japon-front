@@ -1,16 +1,16 @@
 <template>
     <section class="ConnectionLayout">
         <div class="main_container">
-            <div class="titre-principal">
+            <div class="titre-principal" ref="maintitle">
                 <h1>Connectez-vous à votre compte</h1>
             </div>
 
-            <div class="createguide-error" v-if="errors.length > 0">
+            <p class="createguide-error" ref="errorContainer" v-if="errors.length > 0">
                 <b>Merci de corriger ces erreurs : </b>
                 <ul>
                     <li v-for="error in errors" :key="error"> {{error}}</li>
                 </ul>
-            </div>
+            </p>
             <div class="success" v-if="success">
                 <p>{{ success }}</p>
             </div>
@@ -90,6 +90,9 @@ export default {
             if (this.errors.length > 0) {
                 console.log("Ça va pas du tout, fais ça correctement stp !");
                 console.log(this.errors);
+                const rect = this.$refs.maintitle.getBoundingClientRect();
+                console.log(rect);
+                window.scrollTo(0, rect.y + window.scrollY);
             } else {
                 console.log('send form !');
                 // on exécute la requête pour récupérer un token

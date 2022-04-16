@@ -18,12 +18,19 @@ html{
   max-width: 1642px;
   margin: 0 auto;
 }
-
+@media screen and (max-width: 1366px){
+  .main_container{
+      max-width: 1250px;
+  }
+}
 @media screen and (max-width: 375px){
   .main_container{
       max-width: 302px;
   }
 }
+
+
+
 
 /* --------------- */
 
