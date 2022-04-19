@@ -24,6 +24,7 @@ export default {
         apiClient.post('/wp/v2/media', data, {
             headers: {
                 'Content-Type': 'multipart/form-data',
+                /* Only authenticated AND authorized users can upload files in WordPress */
                 'Authorization': 'Bearer ' + store.state.token
             }
         })
