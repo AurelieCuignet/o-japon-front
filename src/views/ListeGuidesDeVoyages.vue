@@ -18,10 +18,11 @@
         </router-link>
       </div>
     </div>
-    <div class="listguide__card__container">
+    <div class="listguide__card__container" v-if="nameGuides && nameGuides.length > 0">
         <CardGuide v-bind:name="nameGuide.title.rendered"
            v-for="nameGuide in nameGuides" v-bind:key="nameGuide.id" v-bind:image="nameGuide._embedded['wp:featuredmedia'][0].source_url" @onDeleteCardGuide="RefreshList(nameGuide.id)" v-bind:id="nameGuide.id" />
-      </div>
+    </div>
+    <div class="info" v-else>Vous n'avez créé aucun guide pour le moment. Que diriez-vous de <router-link to="/createguide">créer un nouveau guide</router-link> ?</div>
   </div>
 </section>
 
