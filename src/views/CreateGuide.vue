@@ -30,7 +30,7 @@
 
         <br><br><br><br>
 
-        <Button v-on:click="sendForm(), goToListGuide()" btnName="Créer le guide"/>
+        <Button v-on:click="sendForm" btnName="Créer le guide"/>
       </div>
   </section>
 </template>
@@ -109,18 +109,14 @@ export default {
                     // the message accordingly
                     if(data.type === "success") {
                         this.success = data.message;
+                        this.$router.push('/listeguidesdevoyages');
                     } else {
                         this.errors.push(data.message);
                     }
                 });
                 
             }
-        },
-        goToListGuide(){
-            if(this.errors.length <= 0){
-                this.$router.push('/listeguidesdevoyages')
-            }
-         }
+        }
     }
 
 }
