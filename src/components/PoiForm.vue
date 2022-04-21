@@ -1,6 +1,4 @@
 <template>
-
-
 <section class="createguide">
     <div class="main_container" v-if="!success">
         <router-link to='/backoffice'>
@@ -65,9 +63,6 @@
         </div>
     </div>
   </section>
-
-
-
 </template>
 
 <script>
@@ -113,78 +108,56 @@ export default {
         }
     },
     mounted() {
-        // call to API to get taxonomies
-        // Attention, on ne traite pas pour l'instant les cas d'erreurs
+        // call to API to get taxonomy terms
+        // Caution : errors are not handled at this time 
+        // (e.g. if taxonomy doesn't exist or doesn't have any terms, user won't know it)
         TaxonomiesService.getTerms('locations').then(
-            // Executer le code qui permet de recuperer le résultat de ma requete
-            // Permet de garder le contexte et de recuperer response
             (response) => {
-                console.log(response.data);
                 const localisations = response.data;
                 for(const location of localisations) {
                     this.locations.push({
                         id: location.id,
                         name: location.name
                     } );
-                    /*
-                    location.id.toString()*/
                 }
-                //this.locations = response.data;
             }
         );
         TaxonomiesService.getTerms('genres').then(
-            // Executer le code qui permet de recuperer le résultat de ma requete
-            // Permet de garder le contexte et de recuperer response
             (response) => {
-                console.log(response.data);
                 const genres = response.data;
                 for(const genre of genres) {
                     this.genres.push({
                         id: genre.id,
                         name: genre.name
                     } );
-                    /*
-                    location.id.toString()*/
                 }
-                //this.locations = response.data;
             }
         );
         TaxonomiesService.getTerms('seasons').then(
-            // Executer le code qui permet de recuperer le résultat de ma requete
-            // Permet de garder le contexte et de recuperer response
             (response) => {
-                console.log(response.data);
                 const seasons = response.data;
                 for(const season of seasons) {
                     this.seasons.push({
                         id: season.id,
                         name: season.name
                     } );
-                    /*
-                    location.id.toString()*/
                 }
-                //this.locations = response.data;
             }
         );
-
-
     },
     methods: {
         updateInputValue: function (value) {
             this.formData[value.name] = value.value
         },
         updateLocation: function (value) {
-            console.log(value);
             this.locationsSelected.push(value);
             this.idLocationsSelected.push(value.id);
         },
         updateGenre: function (value) {
-            console.log(value);
             this.genresSelected.push(value);
             this.idGenresSelected.push(value.id);
         },
         updateSeason: function (value) {
-            console.log(value);
             this.seasonsSelected.push(value);
             this.idSeasonsSelected.push(value.id);
         },
@@ -205,11 +178,8 @@ export default {
                 this.errors.push('Pensez à nous dire ce qui fait de cet endroit un endroit intéressant !');
             }
             if(!this.formData.attachmentId) {
-                this.errors.push('Une image serait du plus bel effet, vous ne pensez pas ? :)');
+                this.errors.push('Une image serait du plus bel effet ! Si vous en avez déjà sélectionnée une, pensez à l\'envoyer d\'abord en cliquant sur le picto de transfert.');
             }
-
-            // return error messages in case of non-validation
-            // run an asynchronous request to register a new user
             if (this.errors.length > 0) {
                 console.log("Ça va pas du tout, fais ça correctement stp !");
                 console.log(this.errors);
@@ -229,10 +199,8 @@ export default {
                     // the message accordingly
                     if(data.type === "success") {
                         this.success = data.message;
-                        console.log("OK !", data.message);
                     } else {
                         this.errors.push(data.message);
-                        console.log("KO !", data.message);
                     }
                 });
             }
@@ -250,9 +218,7 @@ export default {
     margin: 0 auto;
     background-color: white;
     padding: 2em 5em;
-
 }
-
 .titre-principal {
     text-align: left;
     color: black;
@@ -262,7 +228,6 @@ export default {
     font-family: "Fellix SemiBold";
     font-size: 2.0em;
 }
-
 .Connection {
    text-align: left;
     margin-left: 3.7em;
@@ -272,7 +237,6 @@ export default {
     font-size: 2em;
     color: black;
 }
-
 .prenom_email {
     display: flex;
     font-weight: bold;
@@ -280,20 +244,16 @@ export default {
     font-family: "Fellix SemiBold";
     font-size: 1.500em;
 }
-
 .prenom {
     margin-left: 5em;
 }
-
 .email {
     margin: auto;
     padding-right: 6em;
 }
-
 .container_inputText {
     display: flex;
 }
-
 .container__inputText-content {
     padding-left: 1.500em;
     padding-top: 2.000em;
@@ -307,34 +267,6 @@ export default {
     width: 100%;
     box-sizing: border-box;
 }
-
-/* .input_top_left {
-    border-radius: 0.625em;
-    border: 0.063em solid #F1F1F1;
-    background-color:#F1F1F1 ;
-    color: #1d1d1d;
-    font-size: 1.000em;
-    font-weight: 500;
-    width: 100%;
-    box-sizing: border-box;
-    margin-left: 7.250em;
-    margin-right: 1.125em;
-}
-
-.input_top_right {
-    border-radius: 0.625em;
-    border: 0.063em solid #F1F1F1;
-    background-color:#F1F1F1 ;
-    color: #1d1d1d;
-    font-size: 1.000em;
-    font-weight: 500;
-    width: 100%;
-    box-sizing: border-box;
-    margin-right: 8.750em;
-} */
-
-
-
 .mdp_cmdp, p {
     display: flex;
     font-weight: bold;
@@ -343,18 +275,6 @@ export default {
     font-size: 2.2em;
     margin-bottom: 10px;
 }
-
-/* .mdp {
-    margin-left: 5em;
-    padding-top: 2.5em;
-}
-
-.cmdp {
-    margin: auto;
-    padding-top: 2.5em;
-
-} */
-
 .container_selected_taxonomie {
     display: flex;
     flex-direction: row-reverse;
@@ -362,18 +282,15 @@ export default {
     width: 100%;
     margin-bottom: 2em;
 }
-
 .checkbox_selected {
     display: block;
     height: 1em;
     margin: 0;
     width: 10%;
 }
-
 .checkbox_label {
     font-size: 1.5em;
 }
-
 .container__inputText-content{
     padding-left: 2.4em;
     padding-top: 1.6em;
@@ -388,105 +305,22 @@ export default {
     width: 100%;
     box-sizing: border-box;
 }
-
-/* .container_inputText_bottom {
-    display: flex;
-} */
-
-/* .container_bottom_left {
-    border-radius: 0.625em;
-    border: 0.063em solid #F1F1F1;
-    background-color:#F1F1F1 ;
-    color: #1d1d1d;
-    font-size: 1.000em;
-    font-weight: 500;
-    width: 100%;
-    box-sizing: border-box;
-    margin-left: 7.250em;
-    margin-right: 1.125em;
-}
-
-.container_bottom_right {
-    border-radius: 0.625em;
-    border: 0.063em solid #F1F1F1;
-    background-color:#F1F1F1 ;
-    color: #1d1d1d;
-    font-size: 1.000em;
-    font-weight: 500;
-    width: 100%;
-    box-sizing: border-box;
-    margin-right: 8.750em;
-} */
-
-/* .button_top {
-    width: 180px;
-    height: 3.375em;
-    line-height: 3.375em;
-    background-color: #CE1137;
-    /* padding: 16px 24px;
-    border-radius: 0.625em;
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
-    color: #fff;
-    margin-left: 7.5em;
-    margin-top: 2.188em;
-    margin-bottom: 2.5em;
-} */
-
-/* .btn_connexion {
-
-    border: 0.750em solid #CE1137;
-    color: white;
-    transition: 400ms ease-in-out;
-    text-decoration: none;
-} */
-
-
-/* .button_bottom {
-    width: 7.813em;
-    height: 3.375em;
-    line-height: 3.375em;
-    background-color: #CE1137;
-    /* padding: 16px 24px;
-    border-radius: 0.625em;
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
-    color: #fff;
-    margin-left: 7.625em;
-    margin-top: 2.188em;
-    font-family: "Fellix Bold";
-} */
-
-/* .btn_create {
-    border: 0.750em solid #CE1137;
-    color: white;
-    transition: 400ms ease-in-out;
-    text-decoration: none;
-
-} */
-
-
 .center-button {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 fieldset {
     border: 0;
     margin-bottom: 2em;
 }
-
 /* .check{
     display:inline-block;
     position: absolute;
     top:-2.5em;
     right:0;
     z-index: 3;
-}
-
+} */
 .check__element {
     height: 5em;
     width: 5em;
@@ -495,42 +329,32 @@ fieldset {
     display: flex;
     justify-content: center;
     align-items: center;
-} */
+}
 
 @media screen and (max-width: 375px){
 
     .createguide {
         padding: 4em 0;
     }
-
     .createguide-title h2 {
         font-size: 3.8em;
     }
-
     .createguide-title h3 {
         font-size: 2.8em;
     }
-
     .createguide label {
         font-size: 2em;
     }
-
     .main_container button {
         margin-bottom: 6em;
     }
-
     #content {
         font-size: 1em;
     }
-
     p {
         font-size: 2em;
     }
-
-
 }
-
-
 </style>
 
 

@@ -19,8 +19,6 @@ export default {
     },
     add(data, callback) {
         let arrayToString = JSON.stringify(Object.assign({}, data));  // convert array to string
-        //let stringToJsonObject = JSON.parse(arrayToString);  // convert string to json object
-        console.log(arrayToString);
         apiClient.post('/poi', arrayToString, {
             headers: {
                 'Authorization': 'Bearer ' + store.state.token
@@ -28,7 +26,6 @@ export default {
         })
         .catch(
             (error) => {
-                console.log(error);
                 callback({
                     type: 'error',
                     message: error.response.data.message
@@ -37,7 +34,6 @@ export default {
         )
         .then(
             (response) => {
-                console.log(response);
                 callback({
                     type: 'success',
                     message: response.statusText
@@ -53,7 +49,6 @@ export default {
         })
         .catch(
             (error) => {
-                console.log(error);
                 callback({
                     type: 'error',
                     message: error.response.data.message
@@ -62,7 +57,6 @@ export default {
         )
         .then(
             (response) => {
-                console.log(response);
                 callback({
                     type: 'success',
                     message: response.statusText
@@ -78,7 +72,6 @@ export default {
         })
         .catch(
             (error) => {
-                console.log(error);
                 callback({
                     type: 'error',
                     message: error.response.data.message
@@ -87,7 +80,6 @@ export default {
         )
         .then(
             (response) => {
-                console.log(response);
                 callback({
                     type: 'success',
                     message: response.statusText
@@ -99,7 +91,6 @@ export default {
         apiClient.get(`/travelguide/${guideId}/poi`)
         .catch(
             (error) => {
-                console.log(error);
                 callback({
                     type: 'error',
                     message: error.response.data.message
@@ -108,7 +99,6 @@ export default {
         )
         .then(
             (response) => {
-                console.log(response);
                 callback({
                     type: 'success',
                     message: response
