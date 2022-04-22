@@ -139,7 +139,7 @@ export default {
 
 <style scoped>
  @import url('../assets/css/style.css');
-/* @import url('../assets/css/createguide.css');  */
+@import url('../assets/css/createguide.css');
 
 .main_container {
     max-width: 102.625em;
