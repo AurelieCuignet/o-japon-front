@@ -4,12 +4,12 @@
         <div class="titre-principal">
             <h1>Inscrivez-vous</h1>
         </div>
-        <div class="createguide-error" v-if="errors.length > 0">
+        <p class="createguide-error" v-if="errors.length > 0">
             <b>Merci de corriger ces erreurs : </b>
             <ul>
                 <li v-for="error in errors" :key="error"> {{error}}</li>
             </ul>
-        </div>
+        </p>
         <div class="success" v-if="success">
             <p>{{ success }}</p>
         </div>
@@ -112,6 +112,7 @@ export default {
             if (this.errors.length > 0) {
                 console.log("Ça va pas du tout, fais ça correctement stp !");
                 console.log(this.errors);
+                window.scrollTo(0, 0);
             } else {
                 UsersService.register({
                     username: this.formData.username,
@@ -138,7 +139,7 @@ export default {
 
 <style scoped>
  @import url('../assets/css/style.css');
-/* @import url('../assets/css/createguide.css');  */
+@import url('../assets/css/createguide.css');
 
 .main_container {
     max-width: 102.625em;

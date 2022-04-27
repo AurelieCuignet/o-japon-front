@@ -11,7 +11,7 @@
             <p v-for="error in errors" :key="error">{{ error }}</p>
         </div>
         <SingleGuideDetailLayout v-if="nameguidesingle" v-bind:name="nameguidesingle.title.rendered" />
-        <div class="poi__back__card__container">
+        <div class="poi__back__card__container" v-if="poiList && poiList.length > 0">
             <Card 
               v-for="poi in poiList" v-bind:key="poi.title" 
               v-bind:name="poi.title.rendered" 
@@ -21,7 +21,8 @@
               v-bind:currentId="poi.id"
               @removePoiFromGuideEvent="removePoiFromGuide"
             />
-          </div>
+        </div>
+        <div class="info" v-else>Vous n'avez ajouté aucun point d'intérêt à ce voyage pour le moment. Que diriez-vous d'<router-link :to="{name: 'GuideDeVoyagePOIList', params : {currentId:currentId}}">ajouter maintenant votre premier point d'intérêt</router-link> ?</div>
       </div>
   </section>
 </template>

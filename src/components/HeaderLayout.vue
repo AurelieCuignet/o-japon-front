@@ -86,7 +86,14 @@ export default {
     justify-content: space-between;
     width: 100%;
 }
+/* PARTIE RESPONSIVE */
 
+@media screen and (max-width: 1366px){
+    .header{
+        padding: 2em;
+        box-sizing: border-box;
+    }   
+}
 
 .header__center{
     width: 100%;

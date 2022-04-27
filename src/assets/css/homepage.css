@@ -69,6 +69,7 @@ body,html{
 .header__desktop-pi{
     display: flex;
     justify-content: space-between;
+    gap: 4em;
 }
 
 
@@ -113,7 +114,7 @@ body,html{
 }
 
 .lejapon__content-right{
-    width: 80%;
+    width: 60%;
 }
 
 .lejapon__content__right-text{
@@ -326,20 +327,14 @@ body,html{
     align-items: center;
     justify-content: center;
     position: relative;
+    gap: 1.6em;
 }
-
-
 .galerie__img-1,
 .galerie__img-2,
-.galerie__img-3,
-.galerie__img-4{
-    margin-right: 1.6em;
-}
-
-.galerie__img-1 img,
-.galerie__img-2 img,
-.galerie__img-3 img,
-.galerie__img-4 img{
+.galerie__img-3 {
+    flex: 1;
+} 
+.galerie__img img {
     margin-bottom: 1.6em;
 }
 
@@ -430,8 +425,38 @@ body,html{
     margin-right: 2.4em;
 }
 
+/* PARTIE RESPONSIVE */
 
-/* PARTIE RESPONSIVE 375PX */
+@media screen and (max-width: 1366px){
+    .header__desktop {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .header__desktop-title span{
+        font-size: 5em;
+    }
+    .header__desktop-title h1{
+        font-size: 12em;
+    }
+    .header__desktop__action{
+        display:none;
+    }
+    .galerie-word-1{
+        font-size: 7em;
+    }
+    .galerie-word-2{
+        font-size: 7em;
+    }
+    .galerie__img img {
+        width: 98%;
+    }
+    .lejapon_word {
+        font-size: 7em;
+        top: -50px;
+        left: -46px;
+    }
+}
+
 
 @media screen and (max-width: 375px){
 
@@ -602,3 +627,4 @@ body,html{
     }
 
 }
+

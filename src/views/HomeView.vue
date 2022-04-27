@@ -6,14 +6,14 @@
           <HeaderLayout v-else />
           <BurgerMenu />
 
-        <div class="main_container">
+        <!-- <div class="main_container"> -->
 
-          <div class="header__desktop-title">
+          <div class="main_container header__desktop-title">
             <span>日本</span>
             <h1>Japan</h1>
           </div>
 
-          <div class="header__desktop__action">
+          <div class="main_container header__desktop__action">
             <div class="header__desktop__action__container-search">
               <!-- <InputSearch />-->
             </div>
@@ -22,10 +22,13 @@
             </div>
           </div> -->
 
-          <div class="header__desktop-pi">
-            <CirclePi localisationPI="Localisation" namePI="Nom du point d'intérêt" /><CirclePi localisationPI="Localisation" namePI="Nom du point d'intérêt" /><CirclePi localisationPI="Localisation" namePI="Nom du point d'intérêt" />
+          <div class="main_container header__desktop-pi">
+            <CirclePi localisationPI="Tokyo" namePI="Tokyo métropole" ImgUrl="https://source.unsplash.com/200x200?tokyo"/>
+            <CirclePi localisationPI="Kyoto" namePI="Balade dans Kyoto" ImgUrl="https://source.unsplash.com/200x200?kyoto"/>
+            <CirclePi localisationPI="Honshū" namePI="Mont Fuji" ImgUrl="https://source.unsplash.com/200x200?fuji"/>
+
           </div> 
-        </div>
+        <!-- </div> -->
   </div>
 
 <div class="main_container" id="japon">
@@ -62,7 +65,7 @@
         <Button btnName="Afficher tout" />
       </div>
     </div>
-    <p>Découvrez les points d'intérêt sélectionnés par l'équipe O'Japon. Vous pouvez accéder aux informations des différents P.I en cliquant dessus. Alors n'hésitez pas :-)</p>
+    <p>Découvrez les points d'intérêt sélectionnés par l'équipe O'Japon. Vous pouvez accéder aux informations des différents points d'intérêt en cliquant dessus. Alors n'hésitez pas :-)</p>
 
     <div class="pi__list__top">
       <div class="pi__list__top-left"><span>Osaka</span></div>

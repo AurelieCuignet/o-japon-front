@@ -1,102 +1,113 @@
 <template>
-  <div>
+    <div>
+        <!-- container to display error, only visible when errors array contains at least 1 item -->
         <div class="errors" v-if="errors.length > 0">
             <p v-for="error in errors" :key="error">{{ error }}</p>
         </div>
+        <!-- container to display image thumbnail after upload is successful (not tested with PDF files, but it should only display an empty <div>) -->
         <div v-if="success">
             <img v-if="newFileInfo.media_type == 'image'" v-bind:src="newFileInfo.media_details.sizes.medium.source_url" />
         </div>
+        <!-- Vue form to choose file and set a title. This container is only shown before media upload, and is replaced by the <div> just above after upload is successful -->
         <div v-else>
             <div class="upload_container">
                 <label for="file">Choisissez un fichier</label>
-                <input :disabled="loading" @change="upload($event)" name="file" id="file" placeholder="Choose a file..." type="file" :accept="fileTypes" class="container__inputText-content">
+                <input 
+                    :disabled="loading" 
+                    :accept="fileTypes"
+                    @change="upload($event)" 
+                    name="file" 
+                    id="file" 
+                    placeholder="Sélectionner un fichier..." 
+                    type="file" 
+                    class="container__inputText-content"
+                >
                 <label for="title">Titre de votre fichier</label> 
-                <InputText :disabled="loading" name="title" id="title" placeholder="Titre du fichier" type="text" @inputChange="updateInputValue" /> 
+                <InputText 
+                    :disabled="loading" 
+                    @inputChange="updateInputValue"
+                    name="title" 
+                    id="title" 
+                    placeholder="Titre du fichier" 
+                    type="text" 
+                /> 
             </div>
-
             <div class="center-button">
                 <img src="../../assets/images/upload.svg" v-on:click="uploadFile" />
-                
-                <div class="loader" v-if="loading"></div>
+            </div>
+            <div class="loader" v-if="loading"></div>
         </div>
-        </div>
-        
-  </div>
+    </div>
 </template>
 
 <script>
-import InputText from '@/components/formulaire/InputText.vue';
-import UploadMediaService from '@/services/UploadMediaService.js';
+    import InputText from '@/components/formulaire/InputText.vue';
+    import UploadMediaService from '@/services/UploadMediaService.js';
 
-export default {
-    name: 'UploadFile',
-    props: {
-        fileTypes: {
-            default:'image/*,.pdf',
-            type: String
-        }
-    },
-    components: {
-        InputText
-    },
-    data () {
-        return {
-            errors: [],
-            success: null,
-            loading: false,
-            newFileInfo: null,
-            dataForm: new FormData(),
-            file: File,
-            fileId: null,
-            title: null
-        }
-    },
-    methods: {
-        /**
-         * Updates parent's data with child component data passed through $emit
-         */
-        updateInputValue: function (value) {
-            this[value.name] = value.value
+    export default {
+        name: 'UploadFile',
+        components: {
+            InputText
         },
-        /**
-         * File info are updated in component's data when the file is selected by user
-         */
-        upload: function (event) {
-            this.file = event.target.files[0];
-            this.dataForm.append('file', this.file);
+        props: {
+            fileTypes: {
+                default:'image/*,.pdf',
+                type: String
+            }
         },
-        /**
-         * Calls service to add media to WP library and then displays the file to the user if this is an image
-         * ID of the new inserted media is sent to the parent (can then be used as a part of a form with several other form elements)
-         */
-        uploadFile() {
-            // toggles the loader
-            this.loading = true;
-            if(this.title) this.dataForm.append('title', this.title);
-            // call to api
-            console.log('uploadImg et call to api');
-            UploadMediaService.uploadMedia(this.dataForm, (data) => {
-                // I check the type of response and I display
-                // the message accordingly
-                if(data.type === "success") {
-                    this.success = data.message;
-                    this.newFileInfo = data.newFileInfo;
-                    this.$emit('uploadComplete', {
-                        fileId: this.newFileInfo.id
-                    });
-                } else {
-                    this.errors.push(data.message);
-                }
-                // hides the loader
-                this.loading = false;
-            });
+        data () {
+            return {
+                errors: [],
+                success: null,
+                loading: false,
+                newFileInfo: null,
+                dataForm: new FormData(),
+                file: File,
+                fileId: null,
+                title: null
+            }
+        },
+        methods: {
+            /* Updates parent's data with child component data passed through $emit */
+            updateInputValue: function (value) {
+                this[value.name] = value.value
+            },
+            /* File info are updated in component's data when the file is selected by user */
+            upload: function (event) {
+                this.file = event.target.files[0];
+                this.dataForm.append('file', this.file);
+            },
+            /**
+             * Calls service to add media to WP library and then displays a thumbnail of the file to the user if this is an image
+             * ID of the new inserted media is sent to the parent (can then be used as a part of a form with several other form elements)
+             */
+            uploadFile() {
+                // toggles the loader
+                this.loading = true;
+                if(this.title) this.dataForm.append('title', this.title);
+                // call to api
+                UploadMediaService.uploadMedia(this.dataForm, (data) => {
+                    // Checking response type and displaying
+                    // the message accordingly
+                    if(data.type === "success") {
+                        this.success = data.message;
+                        this.newFileInfo = data.newFileInfo;
+                        this.$emit('uploadComplete', {
+                            fileId: this.newFileInfo.id
+                        });
+                    } else {
+                        this.errors.push(data.message);
+                    }
+                    // hides the loader
+                    this.loading = false;
+                });
+            }
         }
     }
-}
 </script>
 
 <style>
-/* todo version responsive et style de l'image bouton */
+/* todo responsive and styling button image */
 .container__inputText-content{
     padding-left: 2.4em;
     padding-top: 1.6em;

@@ -13,12 +13,24 @@ const apiClient = axios.create({
 export default {
     insert(data, callback){
         apiClient.post('/travelguide', data,)
-        .then(
-            (response) => {
-                console.log('ICI', response);
-                callback(response);
+        .catch(
+            (error) => {
+                callback({
+                    type: 'error',
+                    message: error.response.data.message
+                });
             }
         )
+        .then(
+            (response) => {
+                console.log(response);
+                callback({
+                    type: 'success',
+                    message: 'Le fichier a été téléchargé avec succès',
+                    newFileInfo: response.data
+                });
+            }
+        );
     },
 
     findAllByAuthor(authorID){

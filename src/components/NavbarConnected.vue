@@ -2,7 +2,7 @@
 
 <div class="main_container">
       <nav class="header">
-      <div class="header-left"><img src="../assets/logo.png" alt="logo"></div>
+      <div class="header-left"><router-link :to="'/'"><img src="../assets/logo.png" alt="logo"></router-link></div>
       <div class="header__center">
           <ul>
               <li class="header__center-item"><router-link v-for="link in links" :key="link.name" :to="link.route">{{ link.name }}</router-link></li>
@@ -91,7 +91,12 @@ export default {
     justify-content: space-between;
     width: 100%;
 }
-
+@media screen and (max-width: 1366px){
+    .header{
+        padding: 2em;
+        box-sizing: border-box;
+    }   
+}
 
 .header__center{
     width: 100%;
