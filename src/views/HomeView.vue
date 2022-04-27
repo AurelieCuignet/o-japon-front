@@ -23,9 +23,9 @@
           </div> -->
 
           <div class="main_container header__desktop-pi">
-            <CirclePi localisationPI="Tokyo" namePI="Nom du point d'intérêt" ImgUrl="https://source.unsplash.com/200x200?tokyo"/>
-            <CirclePi localisationPI="Shibuya" namePI="Nom du point d'intérêt" ImgUrl="https://source.unsplash.com/200x200?shibuya"/>
-            <CirclePi localisationPI="Okinawa" namePI="Nom du point d'intérêt" ImgUrl="https://source.unsplash.com/200x200?okinawa"/>
+            <CirclePi localisationPI="Tokyo" namePI="Tokyo métropole" ImgUrl="https://source.unsplash.com/200x200?tokyo"/>
+            <CirclePi localisationPI="Kyoto" namePI="Balade dans Kyoto" ImgUrl="https://source.unsplash.com/200x200?kyoto"/>
+            <CirclePi localisationPI="Honshū" namePI="Mont Fuji" ImgUrl="https://source.unsplash.com/200x200?fuji"/>
 
           </div> 
         <!-- </div> -->
