@@ -70,6 +70,7 @@ body,html{
     display: flex;
     justify-content: space-between;
     gap: 4em;
+    padding-bottom: 2em;
 }
 
 
@@ -431,6 +432,8 @@ body,html{
     .header__desktop {
         display: flex;
         flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-between;
     }
     .header__desktop-title span{
         font-size: 5em;

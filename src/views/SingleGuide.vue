@@ -104,6 +104,7 @@ export default {
 <style>
 @import url('../assets/css/style.css');
 @import url('../assets/css/singleguide.css');
+@import url('../assets/css/backpoi.css');
 
 
 </style>
