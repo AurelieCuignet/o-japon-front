@@ -11,7 +11,7 @@
       </div>
       <div class="header__right">
           <ul>
-              <li class="header__right-inscription" @click="logout">Se deconnecter</li>
+              <li class="header__right-inscription" @click="logout">Se déconnecter</li>
               <li>
                   <router-link to="/backoffice">
                         <Button btnName="Accès à mon back office"/>
