@@ -4,12 +4,12 @@
         <div class="titre-principal">
             <h1>Inscrivez-vous</h1>
         </div>
-        <p class="createguide-error" v-if="errors.length > 0">
+        <section class="error" v-if="errors.length > 0">
             <b>Merci de corriger ces erreurs : </b>
             <ul>
                 <li v-for="error in errors" :key="error"> {{error}}</li>
             </ul>
-        </p>
+        </section>
         <div class="success" v-if="success">
             <p>{{ success }}</p>
         </div>

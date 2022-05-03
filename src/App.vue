@@ -12,22 +12,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.errors {
-    color: #750a20;
-    background-color: #eac7ce;
-    border-color: crimson;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-}
-.success {
-    color: #215e5e;
-    background-color: #d5ffff;
-    border-color: teal;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-}
+
 
 /* #nav {
   padding: 30px;

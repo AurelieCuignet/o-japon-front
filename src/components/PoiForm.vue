@@ -10,18 +10,22 @@
             <h2>Créer un <span>point d'intérêt</span></h2>
         </div>
 
-        <div class="errors" v-if="errors.length > 0">
-            <p v-for="error in errors" :key="error">{{ error }}</p>
-        </div>
+        <section class="error" v-if="errors.length > 0">
+            <b>Merci de corriger ces erreurs : </b>
+            <ul>
+                <li v-for="error in errors" :key="error"> {{error}}</li>
+            </ul>
+        </section>
         <div>
             <fieldset>
                 <label class="mdp_cmdp" for="title">Nom :</label>
-                <InputText name="title" id="title" placeholder="Osaka" type="text" @inputChange="updateInputValue" />
+                <InputText :disabled="loading" name="title" id="title" placeholder="Osaka" type="text" @inputChange="updateInputValue" />
             </fieldset>
-            <UploadFile fileTypes="image/*" @uploadComplete="getFileId"/>
+            <!-- <UploadFile fileTypes="image/*" @uploadComplete="getFileId"/> -->
+            <InputFile :disabled="loading" fileTypes="image/*" @inputFileChange="getFile"/>
             <fieldset>
                 <label class="mdp_cmdp" for="title">Description :</label>
-                <TextArea name="content" id="content" placeholder="Description du point d'intérêt : privilégiez une description objective, indépendante de votre expérience personnelle..." @inputChange="updateInputValue" />
+                <TextArea :disabled="loading" name="content" id="content" placeholder="Description du point d'intérêt : privilégiez une description objective, indépendante de votre expérience personnelle..." @inputChange="updateInputValue" />
             </fieldset>
             <div>
                 <p>Localisation (plusieurs choix possibles)</p>
@@ -48,6 +52,7 @@
                 </div>
             </div>
             <Button v-on:click="sendForm" btnName="Créez votre Point d'intérêt"/>
+            <div class="loader" v-if="loading"></div>
         </div>
     </div>
     <div class="main_container" v-else>
@@ -74,18 +79,21 @@
 import InputText from '@/components/formulaire/InputText.vue';
 import Retour from '@/components/CTA/Retour.vue';
 import TextArea from '@/components/formulaire/TextArea.vue';
-import UploadFile from '@/components/formulaire/UploadFile.vue';
+//import UploadFile from '@/components/formulaire/UploadFile.vue';
+import InputFile from '@/components/formulaire/InputFile.vue';
 import Button from '@/components/Button.vue';
 import SearchAutocomplete from '@/components/formulaire/SearchAutocomplete.vue';
 import TaxonomiesService from '@/services/TaxonomiesService.js';
 import POIService from '@/services/POIService.js';
+import UploadMediaService from '@/services/UploadMediaService.js';
 
 export default {
     name: "PoiForm",
     components: {
         InputText,
         Retour,
-        UploadFile,
+        //UploadFile,
+        InputFile,
         TextArea,
         Button,
         SearchAutocomplete
@@ -95,9 +103,12 @@ export default {
         return {
             errors: [],
             success: null,
+            loading: false,
             locations: [],
             genres: [],
             seasons: [],
+            dataForm: new FormData(),
+            file: File,
             formData: {
                 title: null,
                 content: null,
@@ -173,6 +184,11 @@ export default {
         updateInputValue: function (value) {
             this.formData[value.name] = value.value
         },
+        getFile: function (value) {
+            console.log("getFile value : ", value);
+            this.file = value.value;
+            //this.dataForm.append('file', value.value);
+        },
         updateLocation: function (value) {
             console.log(value);
             this.locationsSelected.push(value);
@@ -204,8 +220,13 @@ export default {
             if(!this.formData.content) {
                 this.errors.push('Pensez à nous dire ce qui fait de cet endroit un endroit intéressant !');
             }
-            if(!this.formData.attachmentId) {
+            if(typeof this.file === "function") {
                 this.errors.push('Une image serait du plus bel effet, vous ne pensez pas ? :)');
+                console.log("file",this.file);
+                console.log(typeof this.file); // function if empty, object if there is a file
+            }
+            if(this.locationsSelected.length < 1) {
+                this.errors.push('Merci de préciser une localisation');
             }
 
             // return error messages in case of non-validation
@@ -214,28 +235,54 @@ export default {
                 console.log("Ça va pas du tout, fais ça correctement stp !");
                 console.log(this.errors);
             } else {
-                // call to PoiServices
-                POIService.add({
-                    title: this.formData.title,
-                    content: this.formData.content,
-                    status: 'publish',
-                    featured_media: this.formData.attachmentId,
-                    author: this.userID,
-                    locations: this.idLocationsSelected,
-                    genres: this.idGenresSelected,
-                    seasons: this.idSeasonsSelected
-                }, (data) => {
-                    // I check the type of response and I display
-                    // the message accordingly
-                    if(data.type === "success") {
-                        this.success = data.message;
-                        console.log("OK !", data.message);
-                    } else {
-                        this.errors.push(data.message);
-                        console.log("KO !", data.message);
-                    }
-                });
+                this.uploadFile();
             }
+        },
+        /**
+         * Calls service to add media to WP library and then displays the file to the user if this is an image
+         * ID of the new inserted media is sent to the parent (can then be used as a part of a form with several other form elements)
+         */
+        uploadFile() {
+            // toggles the loader
+            this.loading = true;
+            this.dataForm.append('file', this.file);
+            if(this.title) this.dataForm.append('title', this.title);
+            // call to api
+            UploadMediaService.uploadMedia(this.dataForm, (data) => {
+                // Checking response type and displaying
+                // the message accordingly
+                if(data.type === "success") {
+                    this.success = data.message;
+                    this.formData.attachmentId = data.newFileInfo.id;
+
+                    // call to PoiServices
+                    POIService.add({
+                        title: this.formData.title,
+                        content: this.formData.content,
+                        status: 'publish',
+                        featured_media: this.formData.attachmentId,
+                        author: this.userID,
+                        locations: this.idLocationsSelected,
+                        genres: this.idGenresSelected,
+                        seasons: this.idSeasonsSelected
+                    }, (data) => {
+                        // I check the type of response and I display
+                        // the message accordingly
+                        if(data.type === "success") {
+                            this.success = data.message;
+                            console.log("OK !", data.message);
+                        } else {
+                            this.errors.push(data.message);
+                            console.log("KO !", data.message);
+                        }
+                    });
+                    
+                } else {
+                    this.errors.push(data.message);
+                }
+                // hides the loader
+                this.loading = false;
+            });
         }
     }
 }
@@ -244,6 +291,7 @@ export default {
 <style scoped>
 
 @import url('../assets/css/createguide.css');
+@import url('../assets/css/style.css');
 
 .main_container {
     max-width: 1642px;
@@ -308,33 +356,6 @@ export default {
     box-sizing: border-box;
 }
 
-/* .input_top_left {
-    border-radius: 0.625em;
-    border: 0.063em solid #F1F1F1;
-    background-color:#F1F1F1 ;
-    color: #1d1d1d;
-    font-size: 1.000em;
-    font-weight: 500;
-    width: 100%;
-    box-sizing: border-box;
-    margin-left: 7.250em;
-    margin-right: 1.125em;
-}
-
-.input_top_right {
-    border-radius: 0.625em;
-    border: 0.063em solid #F1F1F1;
-    background-color:#F1F1F1 ;
-    color: #1d1d1d;
-    font-size: 1.000em;
-    font-weight: 500;
-    width: 100%;
-    box-sizing: border-box;
-    margin-right: 8.750em;
-} */
-
-
-
 .mdp_cmdp, p {
     display: flex;
     font-weight: bold;
@@ -343,17 +364,6 @@ export default {
     font-size: 2.2em;
     margin-bottom: 10px;
 }
-
-/* .mdp {
-    margin-left: 5em;
-    padding-top: 2.5em;
-}
-
-.cmdp {
-    margin: auto;
-    padding-top: 2.5em;
-
-} */
 
 .container_selected_taxonomie {
     display: flex;
@@ -389,85 +399,6 @@ export default {
     box-sizing: border-box;
 }
 
-/* .container_inputText_bottom {
-    display: flex;
-} */
-
-/* .container_bottom_left {
-    border-radius: 0.625em;
-    border: 0.063em solid #F1F1F1;
-    background-color:#F1F1F1 ;
-    color: #1d1d1d;
-    font-size: 1.000em;
-    font-weight: 500;
-    width: 100%;
-    box-sizing: border-box;
-    margin-left: 7.250em;
-    margin-right: 1.125em;
-}
-
-.container_bottom_right {
-    border-radius: 0.625em;
-    border: 0.063em solid #F1F1F1;
-    background-color:#F1F1F1 ;
-    color: #1d1d1d;
-    font-size: 1.000em;
-    font-weight: 500;
-    width: 100%;
-    box-sizing: border-box;
-    margin-right: 8.750em;
-} */
-
-/* .button_top {
-    width: 180px;
-    height: 3.375em;
-    line-height: 3.375em;
-    background-color: #CE1137;
-    /* padding: 16px 24px;
-    border-radius: 0.625em;
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
-    color: #fff;
-    margin-left: 7.5em;
-    margin-top: 2.188em;
-    margin-bottom: 2.5em;
-} */
-
-/* .btn_connexion {
-
-    border: 0.750em solid #CE1137;
-    color: white;
-    transition: 400ms ease-in-out;
-    text-decoration: none;
-} */
-
-
-/* .button_bottom {
-    width: 7.813em;
-    height: 3.375em;
-    line-height: 3.375em;
-    background-color: #CE1137;
-    /* padding: 16px 24px;
-    border-radius: 0.625em;
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
-    color: #fff;
-    margin-left: 7.625em;
-    margin-top: 2.188em;
-    font-family: "Fellix Bold";
-} */
-
-/* .btn_create {
-    border: 0.750em solid #CE1137;
-    color: white;
-    transition: 400ms ease-in-out;
-    text-decoration: none;
-
-} */
-
-
 .center-button {
     display: flex;
     flex-direction: column;
@@ -478,24 +409,6 @@ fieldset {
     border: 0;
     margin-bottom: 2em;
 }
-
-/* .check{
-    display:inline-block;
-    position: absolute;
-    top:-2.5em;
-    right:0;
-    z-index: 3;
-}
-
-.check__element {
-    height: 5em;
-    width: 5em;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 
 @media screen and (max-width: 375px){
 
@@ -527,9 +440,7 @@ fieldset {
         font-size: 2em;
     }
 
-
 }
-
 
 </style>
 

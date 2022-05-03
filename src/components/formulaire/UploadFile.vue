@@ -1,9 +1,12 @@
 <template>
   <div>
       <!-- container to display error, only visible when errors array contains at least 1 item -->
-        <div class="errors" v-if="errors.length > 0">
-            <p v-for="error in errors" :key="error">{{ error }}</p>
-        </div>
+        <section class="error" v-if="errors.length > 0">
+            <b>Merci de corriger ces erreurs : </b>
+            <ul>
+                <li v-for="error in errors" :key="error"> {{error}}</li>
+            </ul>
+        </section>
         <!-- container to display image thumbnail after upload is successful (not tested with PDF files, it should only display an empty <div>) -->
         <div v-if="success">
             <img v-if="newFileInfo.media_type == 'image'" v-bind:src="newFileInfo.media_details.sizes.medium.source_url" />
