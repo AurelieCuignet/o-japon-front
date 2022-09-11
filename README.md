@@ -1,35 +1,46 @@
 # Projet Apothéose O'clock : 0'Japon
 
-## Project setup
+Le projet O'Japon est un site collaboratif, permettant à des voyageurs de partager leur expérience de voyage, et à de futurs voyageurs de préparer leur séjour au Japon.
 
-VueJS is already install in our VirtualBox. 
+O'Japon is a collaborative website, allowing travelers to share their travel experience, and future travelers to prepare their stay in Japan.
 
-If it is not, you have to install now.
+## Frontend
 
-In this project we will use NPM
+Ce dépôt ne concerne que le frontend du projet, qui est développé à l'aide du [framework Vue.js](https://vuejs.org/).
+
+_This repository only contains the front-end project with [Vue.js framework](https://vuejs.org/)._
+
+## Backend
+
+Le back-end est assuré par [WordPress](https://wordpress.org/) en mode API.
+
+_The back-end is handled by headless [WordPress](https://wordpress.org/) and its API._
+
+Le dépôt pour le back-end se trouve [ici](https://github.com/AurelieCuignet/o-japon-back).
+
+_See back-end repository [here](https://github.com/AurelieCuignet/o-japon-back)_
+
+## Configuration initiale / _Initial setting_
+
+If Vue.js is not installed on your system yet, you'll need to install it.
+
+Then create a new project
 
 ```
 npm install -g @vue/cli
 ```
 
-We will use plugin Vue Router in your project folder
-
+Vue Router and VUeX are required for this project
 
 ```
 vue add router
-```
 
-We will use plugin VueX
-
-```
 vue add vuex
 ```
 
-NOW WE ARE READY 
-
 ### Compiles and hot-reloads for development
 
-We have to use a local development server
+To use a local development server
 
 ```
 npm run serve
